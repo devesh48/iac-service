@@ -13,6 +13,15 @@ router.get('/healthcheck', function (req,res){
     }
 })
 
+router.get('/', function (req,res){
+    try{
+        console.log("message success. service up and running");
+        res.send({"status" : "success, Hello there!!"});
+    }catch(e){
+        throw e
+    }
+})
+
 router.post('/insertConfig', (req,res) => {
     try{
        var data = req.body
