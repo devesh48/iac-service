@@ -95,8 +95,8 @@ router.post('/triggerDeployment', async (req,res) => {
     try{
         //trigger the deplyment with final object
        var data = req.data
-        var result = await serviceDataProcessing.processTriggerData(data);
-        res.send(result);
+        await serviceDataProcessing.processTriggerData(data);
+        res.send({"message" : "deplymentTriggered"});
     }catch(e){
         console.log(e);
         throw e
