@@ -21,12 +21,12 @@ const corsOptions = {
   },
   credentials: true,
 }
-app.use(cors(corsOptions));
+
 
 var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(cors(corsOptions));
 app.use('/', index);
 app.use(logger('dev'));
 
