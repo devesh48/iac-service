@@ -1,9 +1,27 @@
 var express = require('express');
 var logger = require('morgan');
 let bodyParser = require('body-parser');
+const cors = require("cors")
 
 var index = require('./routes/index');
 var controller = require('./controller/myController');
+
+
+const domainsFromEnv = process.env.CORS_DOMAINS || ""
+
+const whitelist = domainsFromEnv.split(",").map(item => item.trim())
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error("Not allowed by CORS"))
+    }
+  },
+  credentials: true,
+}
+app.use(cors(corsOptions));
 
 var app = express();
 app.use(bodyParser.json());
