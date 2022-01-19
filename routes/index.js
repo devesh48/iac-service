@@ -3,6 +3,7 @@ const router = express.Router();
 const serviceDs = require('../lib/serviceDS');
 var logger = require('morgan');
 const serviceDataProcessing = require('../lib/serviceDataProcessing');
+var cors = require('cors')
 
 
 router.get('/healthcheck', function (req,res){
@@ -68,6 +69,17 @@ router.get('/loadAllConfig', async (req,res) => {
     }
 })
 
+router.get('/loadAllProjectInfo', cors(), async (req,res) => {
+    try{
+       
+        var result = await serviceDs.readAllProjectInfo();
+        res.send(result);
+    }catch(e){
+        console.log(e);
+        throw e
+    }
+})
+
 router.get('/revertConfig', async (req,res) => {
     try{
        var data = req.params
@@ -91,10 +103,27 @@ router.post('/updateConfig', async (req,res) => {
     }
 })
 
+router.post('/storeProjectInfo', async (req,res) => {
+    try{
+        //trigger the deplyment with final object
+       var data = req.body
+       console.log("***data**")
+       //console.log(data)
+       console.log("***data**")
+       await serviceDs.storeProjectInfo(data);// serviceDataProcessing.processTriggerData(data);
+       res.send({"message" : "Project Info Stored"});
+    }catch(e){
+        console.log(e);
+        throw e
+    }
+})
 router.post('/triggerDeployment', async (req,res) => {
     try{
         //trigger the deplyment with final object
-       var data = req.data
+       var data = req.body
+       console.log("***data**")
+       console.log(data)
+       console.log("***data**")
         await serviceDataProcessing.processTriggerData(data);
         res.send({"message" : "deplymentTriggered"});
     }catch(e){
