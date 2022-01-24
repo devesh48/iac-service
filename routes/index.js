@@ -132,4 +132,18 @@ router.post('/triggerDeployment', async (req,res) => {
     }
 })
 
+router.get('/getStoredProjectConfig/:id', async (req,res) => {
+    try{
+        //update the existing default congif
+       var data = req.params
+       console.log(data)
+       console.log('-----------');
+        var result = await serviceDs.readOldProjectData(data);
+        res.send(result);
+    }catch(e){
+        console.log(e);
+        throw e
+    }
+})
+
 module.exports = router;
