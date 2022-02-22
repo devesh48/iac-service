@@ -1,4 +1,5 @@
 var serviceDs = require('../lib/iac-tool-ds');
+var processing= require('../lib/processing')
 class Controller {
     init() {
         try {
@@ -9,7 +10,10 @@ class Controller {
                 Promise.all(inits).then(
                     () => {
                         console.log('All the servicess initialized successfully');
-                        resolve();
+                        setTimeout(() => {
+                            resolve(processing.startPolling());
+                        }, 5000);
+                        
                     },
                     (error) => {
                         console.log('Service initialization failed');
