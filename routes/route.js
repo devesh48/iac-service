@@ -66,5 +66,16 @@ router.get('/getAllPipelines', async (req, res) => {
     }
 })
 
+router.get('/getPatternByName/:name', async (req, res) => {
+    try {
+        var name = req.params['name'];
+        var result = await serviceDs.getPatternDataByName(name);
+        res.send(result);
+    } catch (e) {
+        console.log(e);
+        throw e
+    }
+})
+
 
 module.exports = router;
