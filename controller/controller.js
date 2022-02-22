@@ -1,9 +1,9 @@
-var serviceDs = require('../lib/serviceDS');
+var serviceDs = require('../lib/iac-tool-ds');
 class Controller {
-    init () {
+    init() {
         try {
             console.log('first function');
-            return new Promise((resolve,reject) => {
+            return new Promise((resolve, reject) => {
                 console.log('initializing services');
                 var inits = [serviceDs.init()]
                 Promise.all(inits).then(
@@ -19,11 +19,10 @@ class Controller {
             })
         } catch (error) {
             throw error;
-            
         }
     }
 
-    sampleFunction () {
+    sampleFunction() {
         try {
             console.log('sample function is triggered');
         } catch (error) {

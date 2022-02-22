@@ -3,8 +3,8 @@ var logger = require('morgan');
 let bodyParser = require('body-parser');
 const cors = require("cors")
 
-var index = require('./routes/index');
-var controller = require('./controller/myController');
+var index = require('./routes/route');
+var controller = require('./controller/controller');
 
 
 const domainsFromEnv = process.env.CORS_DOMAINS || ""
