@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const serviceDs = require('../lib/iac-tool-ds');
+const service = require('../lib/iac-tool');
 
 
 router.get('/healthcheck', function (req, res) {
@@ -24,7 +24,7 @@ router.get('/', function (req, res) {
 router.post('/addNewPattern', (req, res) => {
     try {
         var data = req.body
-        serviceDs.insertData(data);
+        service.processAddNewPattern(data);
         console.log("message success. service up and running");
         res.send({ message: 'Insertion successfull' });
     } catch (e) {
@@ -35,7 +35,7 @@ router.post('/addNewPattern', (req, res) => {
 
 router.get('/getPatternNames', async (req, res) => {
     try {
-        var result = await serviceDs.getUniqueNames();
+        var result = await service.processUniqueName();
         res.send(result);
     } catch (e) {
         console.log(e);
@@ -46,7 +46,7 @@ router.get('/getPatternNames', async (req, res) => {
 router.post('/createNewPipeline', (req, res) => {
     try {
         var data = req.body
-        serviceDs.insertNewPipelineData(data);
+        service.processNewPipeline(data);
         console.log("message success. service up and running");
         res.send({ message: 'Insertion successfull' });
     } catch (e) {
@@ -58,7 +58,7 @@ router.post('/createNewPipeline', (req, res) => {
 
 router.get('/getAllPipelines', async (req, res) => {
     try {
-        var result = await serviceDs.readAllPipelineInfo();
+        var result = await service.processExistingPipeline();
         res.send(result);
     } catch (e) {
         console.log(e);
@@ -69,7 +69,7 @@ router.get('/getAllPipelines', async (req, res) => {
 router.get('/getPatternByName/:name', async (req, res) => {
     try {
         var name = req.params['name'];
-        var result = await serviceDs.getPatternDataByName(name);
+        var result = await service.processpatternByName(name);
         res.send(result);
     } catch (e) {
         console.log(e);
