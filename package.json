@@ -8,10 +8,12 @@
   "dependencies": {
     "async": "^3.2.3",
     "body-parser": "~1.18.2",
+    "clean-deep": "^3.4.0",
     "cookie-parser": "~1.4.3",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
     "express": "~4.15.5",
+    "handlebars": "^4.7.7",
     "jade": "~1.11.0",
     "mongodb": "^4.3.0",
     "morgan": "~1.9.0",

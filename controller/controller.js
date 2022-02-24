@@ -1,12 +1,12 @@
 var serviceDs = require('../lib/iac-tool-ds');
 var processing= require('../lib/processing')
+var utility = require('../lib/handler-utilty');
 class Controller {
     init() {
         try {
-            console.log('first function');
             return new Promise((resolve, reject) => {
                 console.log('initializing services');
-                var inits = [serviceDs.init()]
+                var inits = [serviceDs.init(), utility.init()]
                 Promise.all(inits).then(
                     () => {
                         console.log('All the servicess initialized successfully');

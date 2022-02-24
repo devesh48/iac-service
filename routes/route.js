@@ -77,5 +77,28 @@ router.get('/getPatternByName/:name', async (req, res) => {
     }
 })
 
+router.post('/getHandlebars', async (req, res) => {
+    try {
+        var data = req.body;
+        var result = await service.processDynamicUserInput(data['message'],data['template']);
+        res.send(result);
+    } catch (e) {
+        console.log(e);
+        throw e
+    }
+})
+
+router.post('/parseJson', async (req, res) => {
+    try {
+        var data = req.body;
+        console.log(data['jsonTemplate']);
+        var result = await service.parseJson(data['jsonTemplate']);
+        res.send(result);
+    } catch (e) {
+        console.log(e);
+        throw e
+    }
+})
+
 
 module.exports = router;
