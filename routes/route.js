@@ -1,4 +1,5 @@
 const express = require('express');
+const folderUtility = require('../lib/folder-utility');
 const router = express.Router();
 const service = require('../lib/iac-tool');
 
@@ -88,12 +89,27 @@ router.post('/getHandlebars', async (req, res) => {
     }
 })
 
-router.post('/parseJson', async (req, res) => {
+router.get('/testCode', async (req, res) => {
     try {
         var data = req.body;
-        console.log(data['jsonTemplate']);
-        var result = await service.parseJson(data['jsonTemplate']);
-        res.send(result);
+        // create directory with clean is working
+        // await service.handleFolderUtility();
+        // await service.handleGITUtility();
+        // await service.createJSONFile({"key" : "value"});
+        await service.processNewPipeline(data);
+        await service.buildJenkinsFile("Dafsdfa");
+        // await folderUtility.moveFile('github.com/devesh48/dynamicFilecommitRepo.git');
+        res.send({"key" : "success"});
+    } catch (e) {
+        console.log(e);
+        throw e
+    }
+})
+
+router.get('/triggerDynamicCommit', async (req, res) => {
+    try {
+        await service.triggerGITUtility();
+        res.send({"key" : "success"});
     } catch (e) {
         console.log(e);
         throw e
