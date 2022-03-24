@@ -91,15 +91,11 @@ router.post('/getHandlebars', async (req, res) => {
 
 router.get('/testCode', async (req, res) => {
     try {
-        var data = req.body;
-        // create directory with clean is working
-        // await service.handleFolderUtility();
-        // await service.handleGITUtility();
-        // await service.createJSONFile({"key" : "value"});
-        await service.processNewPipeline(data);
-        await service.buildJenkinsFile("Dafsdfa");
+        // var name = req.params['name'];
+        // await service.processNewPipeline(data);
+        var result = await service.JenkinsBuildTrigger();
         // await folderUtility.moveFile('github.com/devesh48/dynamicFilecommitRepo.git');
-        res.send({"key" : "success"});
+        res.send(JSON.stringify(result));
     } catch (e) {
         console.log(e);
         throw e

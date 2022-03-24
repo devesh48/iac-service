@@ -7,17 +7,20 @@
   },
   "dependencies": {
     "async": "^3.2.3",
+    "axios": "^0.26.1",
     "body-parser": "~1.18.2",
     "clean-deep": "^3.4.0",
     "cookie-parser": "~1.4.3",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
     "express": "~4.15.5",
+    "form-data": "^4.0.0",
     "handlebars": "^4.7.7",
     "jade": "~1.11.0",
     "mongodb": "^4.3.0",
     "morgan": "~1.9.0",
     "mv": "^2.1.1",
+    "request": "^2.88.2",
     "serve-favicon": "~2.4.5",
     "simple-git": "^3.2.6"
   }
